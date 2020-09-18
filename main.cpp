@@ -91,28 +91,20 @@ string processWords(char *input)
 
 int main()
 {
-    std::map<char,int> firstLetterCountMap;
     std::map<char,int> charCountMap;
-
-    char currentChar='\0';
     string sentence = "";
-    int counter = 0;
 
     cout<<"Enter sentence : " <<endl;
     getline(cin,sentence);
 
-
-
-
-
     cout << "The number of words starting with this letter: " << endl;
     string firsts = firstLetters(sentence);
-    firstLetterCountMap = countMap(firsts);
-    printSorted(firstLetterCountMap);
+    chatCountMap = countMap(firsts);
+    printSorted(charCountMap);
 
     cout << "The number of different characters in the text: " << endl;
-    firstLetterCountMap = countMap(sentence);
-    printSorted(firstLetterCountMap);
+    charCountMap = countMap(sentence);
+    printSorted(charCountMap);
 
 
 
