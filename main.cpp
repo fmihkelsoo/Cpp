@@ -1,4 +1,10 @@
-#include <bits/stdc++.h>
+#include <string>
+#include <sstream>
+#include <fstream>
+#include <map>
+#include <vector>
+#include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -26,11 +32,13 @@ map<char,int> countMap(string countString){
     for(int i=0; i<countString.length();i++){
         currentChar = countString[i];
 
-        if(countMap[currentChar]!=0){
+        if(outMap[currentChar]!=0){
             counter = outMap[currentChar];
-            outMap[currentChar]= counter + 1;
+            //outMap[currentChar]= counter + 1;
+            cout<<outMap[currentChar];
         }else{
-            outMap[currentChar]= 1;
+            //outMap[currentChar]= 1;
+            cout<<outMap[currentChar];
         }
     }
     return outMap;
