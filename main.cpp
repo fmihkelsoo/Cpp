@@ -1,21 +1,26 @@
-#include <iostream>
-#include <map>
-#include <algorithm>
-#include <vector>
 #include <bits/stdc++.h>
 
 using namespace std;
 
-bool sortByVal(const pair<char, int> &a,
-               const pair<char, int> &b)
-{
-    return (a.second > b.second);
+string readFile(string path){
+
+    ifstream stream(path);
+
+    if ( ! stream ) {
+        cout << "Error: Can't open the file from path : "<< path <<"\n";
+        exit(1);
+    }
+
+    stringstream buffer;
+    buffer << stream.rdbuf();
+    return buffer.str();
+
 }
 
 map<char,int> countMap(string countString){
 
     char currentChar;
-    std::map<char,int> outMap;
+    map<char,int> outMap;
     int counter = 0;
 
     for(int i=0; i<countString.length();i++){
@@ -31,6 +36,11 @@ map<char,int> countMap(string countString){
     return outMap;
 }
 
+bool sortByVal(const pair<char, int> &a,
+               const pair<char, int> &b){
+                   return (a.second > b.second);
+                   }
+
 void printSorted(map<char, int> countMap){
 
     vector<pair<char, int>> vec;
@@ -45,11 +55,10 @@ void printSorted(map<char, int> countMap){
 
 	for (int i = 0; i < vec.size(); i++)
 	{
-		cout << vec[i].first << ": " << vec[i].second << endl;
+		cout << vec[i].first << " : " << vec[i].second << endl;
 	}
 
 }
-
 
 string firstLetters(string str)
 {
@@ -60,7 +69,6 @@ string firstLetters(string str)
     {
         if (i == 0)
             firstLetterString = firstLetterString+str[i];
-
         if (str[i] == ' ')
         {
             firstLetterString = firstLetterString+str[i+1];
@@ -69,77 +77,24 @@ string firstLetters(string str)
     return firstLetterString;
 }
 
-string processWords(char *input)
-{
-    char *p;
-    vector<string> s;
-
-    p = strtok(input, " ");
-    while (p != NULL)
-    {
-        s.push_back(p);
-        p = strtok(NULL, " ");
-    }
-
-    string charBuffer;
-
-    for (string values : s)
-        charBuffer += values[0];
-
-    return charBuffer;
-}
-
 int main()
 {
-    std::map<char,int> charCountMap;
-    string sentence = "";
+    string path;
+    string text;
 
-    cout<<"Enter sentence : " <<endl;
-    getline(cin,sentence);
+    cout<<"Enter file path : " <<endl;
+    getline(cin,path);
+    text = readFile(path);
+
+    map<char,int> charCountMap;
 
     cout << "The number of words starting with this letter: " << endl;
-    string firsts = firstLetters(sentence);
-    chatCountMap = countMap(firsts);
+    string firsts = firstLetters(text);
+    charCountMap = countMap(firsts);
     printSorted(charCountMap);
 
     cout << "The number of different characters in the text: " << endl;
-    charCountMap = countMap(sentence);
+    charCountMap = countMap(text);
     printSorted(charCountMap);
-
-
-
-
-
-
-
-
-
-    for(int i=0; i<sentence.length();i++){
-        currentChar = sentence[i];
-
-        if(charCountMap[currentChar]!=0){
-            counter = charCountMap[currentChar];
-            charCountMap[currentChar]= counter + 1;
-        }else{
-            charCountMap[currentChar]= 1;
-        }
-    }
-
-
-    vector<pair<char, int>> vec;
-
-    map<char, int> :: iterator it2;
-    for (it2=charCountMap.begin(); it2!=charCountMap.end(); it2++)
-    {
-        vec.push_back(make_pair(it2->first, it2->second));
-    }
-
-    sort(vec.begin(), vec.end(), sortByVal);
-
-    cout << "The number of different characters in the text: " << endl;
-	for (int i = 0; i < vec.size(); i++)
-	{
-		cout << vec[i].first << ": " << vec[i].second << endl;
-	}
 
 }

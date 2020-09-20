@@ -1,8 +1,4 @@
 # depslib dependency file v1.0
-1600444977 source:d:\code blocks\cpp projects\letters\main.cpp
-	<iostream>
-	<map>
-	<algorithm>
-	<vector>
+1600575313 source:d:\code blocks\cpp projects\letters\main.cpp
 	<bits/stdc++.h>
 
