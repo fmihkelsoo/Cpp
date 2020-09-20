@@ -34,11 +34,9 @@ map<char,int> countMap(string countString){
 
         if(outMap[currentChar]!=0){
             counter = outMap[currentChar];
-            //outMap[currentChar]= counter + 1;
-            cout<<outMap[currentChar];
+            outMap[currentChar]= counter + 1;
         }else{
-            //outMap[currentChar]= 1;
-            cout<<outMap[currentChar];
+            outMap[currentChar]= 1;
         }
     }
     return outMap;
